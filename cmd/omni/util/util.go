@@ -58,12 +58,16 @@ func CloudScanCmdFlags() []cli.Flag {
 			TakesFile: true,
 		},
 		&cli.StringFlag{
+			Name:  "ai-agent-catalog-path",
+			Usage: "Path to AI-agent detection catalog",
+		},
+		&cli.StringFlag{
 			Name:  "vm-name-regex",
 			Usage: "Filter VMs by name using regex",
 		},
 		&cli.StringMapFlag{
 			Name:  "vm-label-regex",
-			Usage: "Filter VMs by label using regex",
+			Usage: "Filter VMs by name using regex",
 		},
 		&cli.UintFlag{
 			Name:  "concurrency",
@@ -126,6 +130,10 @@ func AgentScanCmdFlags() []cli.Flag {
 		&cli.StringFlag{
 			Name:  "override-hostname",
 			Usage: "Override system hostname",
+		},
+		&cli.StringFlag{
+			Name:  "ai-agent-catalog-path",
+			Usage: "Path to AI-agent detection catalog",
 		},
 		&cli.StringFlag{
 			Name:  "platform",

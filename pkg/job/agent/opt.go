@@ -11,6 +11,7 @@ type OptFunc func(*opts)
 
 type opts struct {
 	vulnDBDirectory                  string
+	aiAgentCatalogPath               string
 	macOSFeedURL                     string
 	vulnScanEnabled                  bool
 	containerVulnScanEnabled         bool
@@ -78,6 +79,12 @@ func WithVulnDBDirectory(dir string) OptFunc {
 func WithMacOSFeedURL(url string) OptFunc {
 	return func(o *opts) {
 		o.macOSFeedURL = url
+	}
+}
+
+func WithAIAgentCatalogPath(path string) OptFunc {
+	return func(o *opts) {
+		o.aiAgentCatalogPath = path
 	}
 }
 

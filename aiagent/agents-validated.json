@@ -1,0 +1,1464 @@
+{
+  "version": 1,
+  "agents": [
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@anthropic-ai/claude-code"
+            ],
+            "executables": [
+              "claude"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "claude"
+            ],
+            "paths": [
+              "**/.local/share/claude/versions/*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@github/copilot"
+            ],
+            "executables": [
+              "copilot"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/github.copilot-*",
+              "**/.vscode/extensions/github.copilot-chat-*"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/gh/extensions/gh-copilot"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "cursor"
+            ],
+            "executables": [
+              "cursor"
+            ],
+            "paths": [
+              "**/share/cursor/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "Cursor-*.AppImage"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "Cursor.exe"
+            ],
+            "paths": [
+              "**/AppData/Local/Programs/cursor/**",
+              "**/ProgramFiles/cursor/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "Cursor"
+            ],
+            "paths": [
+              "/Applications/Cursor.app/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "agent"
+            ],
+            "paths": [
+              "**/.local/bin/agent",
+              "**/.cursor/bin/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@google/gemini-cli"
+            ],
+            "executables": [
+              "gemini"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "devin-desktop"
+            ],
+            "executables": [
+              "windsurf",
+              "devin-desktop"
+            ],
+            "paths": [
+              "**/share/devin-desktop/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "windsurf"
+            ],
+            "paths": [
+              "/Applications/Windsurf.app",
+              "**/AppData/Local/Programs/Windsurf/*"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/codeium.codeium-*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "category": "AI Agent",
+      "platforms": [
+        "linux"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "chatgpt"
+            ],
+            "executables": [
+              "chatgpt"
+            ],
+            "paths": [
+              "**/usr/lib/chatgpt/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "amazon-q-developer",
+      "name": "Amazon Q Developer",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "q"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/amazonwebservices.amazon-q-vscode-*/"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/plugins/amazon-q/META-INF/plugin.xml"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cline",
+      "name": "Cline",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/saoudrizwan.claude-dev-*"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/cline.cline-*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "continue",
+      "name": "Continue",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/Continue.continue-*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "aider-chat"
+            ],
+            "executables": [
+              "aider"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "codex-cli",
+      "name": "Codex CLI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@openai/codex"
+            ],
+            "executables": [
+              "codex"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/openai.chatgpt-*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@opencode/cli",
+              "opencode-ai"
+            ],
+            "executables": [
+              "opencode"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "kiro",
+      "name": "Kiro",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "kiro-cli"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "kiro"
+            ],
+            "paths": [
+              "/Applications/Kiro.app"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tabnine",
+      "name": "Tabnine",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "tabnine",
+              "TabNine",
+              "TabNine-deep-local",
+              "TabNine-deep-cloud",
+              "WD-TabNine",
+              "TabNine-server-runner"
+            ],
+            "paths": [
+              "**/tabnine/**",
+              "**/TabNine/**",
+              "**/TabNine-*",
+              "**/WD-TabNine*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cody",
+      "name": "Cody",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@sourcegraph/cody"
+            ],
+            "executables": [
+              "cody"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/sourcegraph.cody-ai-*",
+              "**/.config/Code/User/globalStorage/sourcegraph.cody-ai/**",
+              "**/AppData/Roaming/Code/User/globalStorage/sourcegraph.cody-ai/**",
+              "**/Library/Application Support/Code/User/globalStorage/sourcegraph.cody-ai/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "blackbox-ai",
+      "name": "BLACKBOX AI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@blackbox_ai/blackbox-cli"
+            ],
+            "executables": [
+              "blackbox"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/blackboxapp.blackbox-*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gemini-code-assist",
+      "name": "Gemini Code Assist",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/google.geminicodeassist-*",
+              "**/.cache/google-vscode-extension/**",
+              "**/Library/Application Support/google-vscode-extension/**",
+              "**/AppData/Local/google-vscode-extension/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "junie",
+      "name": "Junie",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "junie"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.local/share/junie/**",
+              "**/.junie/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "zed"
+            ],
+            "paths": [
+              "**/zed.app/**",
+              "**/Library/Application Support/Zed/**",
+              "**/AppData/Local/Zed/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "supermaven",
+      "name": "Supermaven",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "sm-agent"
+            ],
+            "paths": [
+              "**/.supermaven/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/supermaven.supermaven-*"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/nvim/plugged/supermaven-nvim/**",
+              "**/nvim/site/pack/*/start/supermaven-nvim/**",
+              "**/nvim/site/pack/*/opt/supermaven-nvim/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "goose",
+      "name": "Goose",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "goose"
+            ],
+            "paths": []
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.config/goose/**",
+              "**/AppData/Roaming/Block/goose/**",
+              "/Applications/Goose.app"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kilo-code",
+      "name": "Kilo Code",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@kilocode/cli"
+            ],
+            "executables": [
+              "kilo"
+            ],
+            "paths": [
+              "**/.config/kilo/**",
+              "**/.kilo/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/kilocode.kilo-code-*",
+              "**/.config/Code/User/globalStorage/kilocode.kilo-code/**",
+              "**/Library/Application Support/Code/User/globalStorage/kilocode.kilo-code/**",
+              "**/AppData/Roaming/Code/User/globalStorage/kilocode.kilo-code/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.kilocode/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "qwen-code",
+      "name": "Qwen Code",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@qwen-code/qwen-code"
+            ],
+            "executables": [
+              "qwen"
+            ],
+            "paths": [
+              "**/.qwen/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.qwen/extensions/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "grok-cli",
+      "name": "Grok CLI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@xai-official/grok"
+            ],
+            "executables": [
+              "grok"
+            ],
+            "paths": [
+              "**/.grok/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "amp",
+      "name": "Amp",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "@ampcode/cli"
+            ],
+            "executables": [
+              "amp"
+            ],
+            "paths": [
+              "**/.config/amp/**",
+              "**/.amp/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "openhands-cli",
+      "name": "OpenHands CLI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "openhands"
+            ],
+            "executables": [
+              "openhands"
+            ],
+            "paths": [
+              "**/.openhands/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "devin-cli",
+      "name": "Devin CLI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "devin"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "replit",
+      "name": "Replit",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "Replit"
+            ],
+            "paths": [
+              "**/Replit.app/**",
+              "**/Replit-*.app/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "ollama"
+            ],
+            "paths": [
+              "**/lib/ollama/**",
+              "**/share/ollama/**",
+              "**/.ollama/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/Ollama.app/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/AppData/Local/Programs/Ollama/**",
+              "**/AppData/Local/Ollama/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "lm-studio",
+      "name": "LM Studio",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "lms",
+              "llmster"
+            ],
+            "paths": [
+              "**/.lmstudio/**",
+              "**/LM Studio.app/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpt4all",
+      "name": "GPT4All",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "gpt4all"
+            ],
+            "paths": [
+              "**/.config/gpt4all.io/**",
+              "**/.config/nomic.ai/**",
+              "**/.local/share/nomic.ai/GPT4All/**",
+              "**/Library/Application Support/nomic.ai/GPT4All/**",
+              "**/AppData/Roaming/nomic.ai/**",
+              "**/AppData/Local/nomic.ai/GPT4All/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "anythingllm",
+      "name": "AnythingLLM",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "AnythingLLM"
+            ],
+            "paths": [
+              "**/AnythingLLM.app/**",
+              "**/Programs/AnythingLLM/**",
+              "**/anythingllm-desktop/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [
+              "@mintplex-labs/anything-llm-cli"
+            ],
+            "executables": [
+              "any"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "jan",
+      "name": "Jan",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "jan"
+            ],
+            "paths": [
+              "**/.local/share/Jan/data/**",
+              "**/.config/Jan/**",
+              "**/Library/Application Support/Jan/data/**",
+              "**/AppData/Roaming/Jan/data/**",
+              "**/.jan/projects/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "open-webui",
+      "name": "Open WebUI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "open-webui"
+            ],
+            "executables": [
+              "open-webui"
+            ],
+            "paths": [
+              "**/.open-webui/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/Open WebUI.app/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "localai",
+      "name": "LocalAI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "local-ai"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "llama-cpp",
+      "name": "llama.cpp",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "llama",
+              "llama-cli",
+              "llama-server"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "pinokio",
+      "name": "Pinokio",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "pinokio"
+            ],
+            "paths": [
+              "**/Pinokio.app/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "langchain"
+            ],
+            "executables": [],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "llamaindex",
+      "name": "LlamaIndex",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "llama-index"
+            ],
+            "executables": [],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "crewai"
+            ],
+            "executables": [
+              "crewai"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "autogen",
+      "name": "AutoGen",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "autogen-agentchat",
+              "autogen-core"
+            ],
+            "executables": [],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "flowise",
+      "name": "Flowise",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "flowise"
+            ],
+            "executables": [
+              "flowise"
+            ],
+            "paths": [
+              "**/.flowise/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "google-antigravity",
+      "name": "Google Antigravity",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "agy"
+            ],
+            "paths": [
+              "**/.gemini/antigravity/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "mistral-vibe",
+      "name": "Mistral Vibe",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "mistral-vibe"
+            ],
+            "executables": [
+              "vibe",
+              "vibe-acp"
+            ],
+            "paths": [
+              "**/.vibe/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "perplexity-comet",
+      "name": "Perplexity Comet",
+      "category": "AI Agent",
+      "platforms": [
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "comet.exe"
+            ],
+            "paths": [
+              "**/Perplexity/Comet/Application/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "open-interpreter",
+      "name": "Open Interpreter",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "interpreter"
+            ],
+            "paths": [
+              "**/.openinterpreter/**"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "plandex",
+      "name": "Plandex",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "plandex"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpt-engineer",
+      "name": "GPT Engineer",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "gpt-engineer"
+            ],
+            "executables": [
+              "gpt-engineer"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "tabby",
+      "name": "Tabby",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [],
+            "executables": [
+              "tabby"
+            ],
+            "paths": [
+              "**/.tabby/**"
+            ]
+          }
+        },
+        {
+          "signals": {
+            "packages": [],
+            "executables": [],
+            "paths": [
+              "**/.vscode/extensions/TabbyML.vscode-tabby-*"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "mini-swe-agent",
+      "name": "Mini-SWE-Agent",
+      "category": "AI Agent",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "installations": [
+        {
+          "signals": {
+            "packages": [
+              "mini-swe-agent"
+            ],
+            "executables": [
+              "mini"
+            ],
+            "paths": []
+          }
+        }
+      ]
+    }
+  ]
+}

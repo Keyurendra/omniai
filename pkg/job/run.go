@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/accuknox/omniscan/pkg/scanner"
+	"github.com/accuknox/omniscan/pkg/scanner/aiagent"
 	"github.com/accuknox/omniscan/pkg/scanner/clamav"
 	"github.com/accuknox/omniscan/pkg/scanner/macos"
 	trivyScanner "github.com/accuknox/omniscan/pkg/scanner/trivy"
@@ -34,6 +35,7 @@ type RunConfig struct {
 	OfflineWinVulnScan               bool
 	ContainerVulnScan                bool
 	ContainerImageScanModeAgentless  bool
+	AIAgentCatalogPath               string
 }
 
 type Run struct {
@@ -61,6 +63,11 @@ func (r Run) ScanMountPoint(ctx context.Context, os, mount, vmURI, platform stri
 	}
 
 	result := RunResult{OS: os}
+
+	// Package signals collected from the existing vulnerability scan.
+	// These are reused by AI-agent detection so Trivy does not run twice.
+	var aiPackages []aiagent.PackageSignal
+
 	trackedPub := func(ctx context.Context, f scanner.Findings) error {
 		if f == nil {
 			return nil
@@ -142,7 +149,6 @@ func (r Run) ScanMountPoint(ctx context.Context, os, mount, vmURI, platform stri
 				return &result, nil
 			}
 		}
-		return &result, nil
 	}
 
 	if os == "macos" && r.VulnScan && r.MacOSVulnScan {
@@ -173,7 +179,6 @@ func (r Run) ScanMountPoint(ctx context.Context, os, mount, vmURI, platform stri
 				return &result, nil
 			}
 		}
-		return &result, nil
 	}
 
 	if os == "linux" && r.ContainerVulnScan {
@@ -248,8 +253,44 @@ func (r Run) ScanMountPoint(ctx context.Context, os, mount, vmURI, platform stri
 			os,
 		)
 		result.VulnScanError = err
+
 		if err == nil && finding != nil {
+			// Reuse the package information from the existing Trivy scan.
+			if trivyResult, ok := finding.(*trivyScanner.Result); ok {
+				aiPackages = aiagent.PackageSignalsFromTrivyResults(
+					trivyResult.Results,
+				)
+			}
+
 			if err := trackedPub(ctx, finding); err != nil {
+				return &result, nil
+			}
+		}
+	}
+
+	// AI-agent detection.
+	//
+	// This runs independently of the vulnerability scan. Therefore:
+	// - AI detection still runs when VulnScan is disabled.
+	// - Windows/macOS detection does not depend on a Trivy result.
+	// - Linux package signals are reused from the existing Trivy scan.
+	if r.AIAgentCatalogPath != "" {
+		catalog, err := aiagent.LoadCatalog(r.AIAgentCatalogPath)
+		if err != nil {
+			return &result, fmt.Errorf("loading AI-agent catalog: %w", err)
+		}
+
+		roots := aiagent.DiscoverRoots(mount, os)
+
+		aiResults := aiagent.Detect(
+			catalog,
+			roots,
+			aiPackages,
+			os,
+		)
+
+		for _, aiResult := range aiResults {
+			if err := trackedPub(ctx, aiResult); err != nil {
 				return &result, nil
 			}
 		}
