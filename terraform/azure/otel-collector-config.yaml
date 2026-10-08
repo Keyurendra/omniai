@@ -1,1 +1,129 @@
-../otel-collector-config.yaml
+extensions:
+  bearertokenauth:
+    filename: /etc/accuknox-omni/artifact.token
+
+receivers:
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      memory:
+      cpu:
+      load:
+      network:
+      processes:
+      disk:
+        metrics:
+          system.disk.io:
+            enabled: true
+          system.disk.io_time:
+            enabled: false
+          system.disk.merged:
+            enabled: false
+          system.disk.operation_time:
+            enabled: false
+          system.disk.operations:
+            enabled: false
+          system.disk.pending_operations:
+            enabled: false
+          system.disk.weighted_io_time:
+            enabled: false
+        exclude:
+          devices:
+            - "^/dev/loop.*"
+          match_type: regexp
+      filesystem:
+        include_devices:
+          devices:
+            - sda
+            - vda
+            - xvda
+            - nvme0n1
+          match_type: regexp
+        include_virtual_filesystems: false
+  journald:
+    units:
+      - omni
+    start_at: end
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: 'otel-collector'
+          scrape_interval: 10s
+          static_configs:
+            - targets: ['localhost:9100']
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 50
+  batch/metrics:
+    send_batch_size: 8192
+    send_batch_max_size: 8192
+    timeout: 30s
+  batch/logs:
+    send_batch_size: 8192
+    send_batch_max_size: 8192
+    timeout: 5m
+  resourcedetection:
+    detectors:
+      - gcp
+      - ec2
+      - azure
+  transform:
+    metric_statements:
+      - context: datapoint
+        statements:
+          - set(attributes["account"], resource.attributes["cloud.account.id"])
+          - set(attributes["region"], resource.attributes["cloud.region"])
+          - set(attributes["provider"], resource.attributes["cloud.provider"])
+          - set(attributes["instance_id"], resource.attributes["host.id"])
+          - set(attributes["tenant_id"], "${tenant_id}")
+    log_statements:
+      - context: resource
+        statements:
+          - set(attributes["service.name"], "omni")
+          - set(attributes["account"], resource.attributes["cloud.account.id"])
+          - set(attributes["region"], resource.attributes["cloud.region"])
+          - set(attributes["provider"], resource.attributes["cloud.provider"])
+          - set(attributes["instance_id"], resource.attributes["host.id"])
+          - set(attributes["tenant_id"], "${tenant_id}")
+
+exporters:
+  otlp:
+    endpoint: otel.omni.accuknox.com:443
+    tls:
+      insecure: false
+      insecure_skip_verify: false
+    auth:
+      authenticator: bearertokenauth
+
+service:
+  telemetry:
+    metrics:
+      level: none
+    logs:
+      level: info
+  extensions:
+    - bearertokenauth
+  pipelines:
+    metrics:
+      receivers:
+        - hostmetrics
+        - prometheus
+      processors:
+        - memory_limiter
+        - resourcedetection
+        - transform
+        - batch/metrics
+      exporters:
+        - otlp
+    logs:
+      receivers:
+        - journald
+      processors:
+        - memory_limiter
+        - resourcedetection
+        - transform
+        - batch/logs
+      exporters:
+        - otlp

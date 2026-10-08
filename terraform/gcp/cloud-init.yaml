@@ -1,1 +1,139 @@
-../cloud-init.yaml
+#cloud-config
+
+timezone: UTC
+ssh_pwauth: false
+
+bootcmd:
+  - [ bash, -c, "sleep 1m" ]
+
+package_update: true
+package_upgrade: true
+packages:
+  - ntfs-3g
+  - unattended-upgrades
+  - curl
+  - clamav
+  - clamav-daemon
+  - libclamunrar
+
+write_files:
+  - path: /etc/apt/apt.conf.d/50unattended-upgrades
+    content: |
+      Unattended-Upgrade::Automatic-Reboot "true";
+      Unattended-Upgrade::Automatic-Reboot-Time "23:45";
+
+  - path: /etc/cron.daily/omni-update-db
+    permissions: '0755'
+    owner: root:root
+    content: |
+      #!/bin/sh
+      /usr/local/bin/omni db download vuln java msrc
+
+  - path: /etc/accuknox-omni/artifact.token
+    content: ${artifact_token}
+    owner: root:root
+    permissions: "0600"
+
+  %{ if enable_telemetry }
+  - path: /etc/otel-collector-config.yaml
+    content: |
+      ${indent(6, chomp(otel_collector_config))}
+    owner: root:root
+    permissions: "0644"
+  %{ endif }
+
+  - path: /etc/systemd/system/omni.service
+    content: |
+      [Unit]
+      Description=AccuKnox Omni
+      After=network.target
+      Wants=network.target
+
+      [Service]
+      Type=simple
+      User=root
+      ExecStart=/usr/local/bin/omni "${provider}" schedule \
+                  --artifact-token-file /etc/accuknox-omni/artifact.token \
+                  --artifact-endpoint "${artifact_endpoint}" \
+                  --tenant-id "${artifact_tenant_id}" \
+                  --artifact-label "${artifact_label}" %{for key, value in omni_additional_flags}--${key}="${value}" %{endfor} %{if enable_telemetry}--enable-prometheus-metrics %{endif}
+      Restart=always
+      RestartSec=10
+      StandardOutput=journal
+      StandardError=journal
+      SyslogIdentifier=accuknox-omni
+
+      [Install]
+      WantedBy=multi-user.target
+    owner: root:root
+    permissions: '0644'
+
+  %{ if enable_telemetry }
+  - path: /etc/systemd/system/otel-collector.service
+    content: |
+      [Unit]
+      Description=OpenTelemetry Collector
+      After=network.target
+      Wants=network.target
+
+      [Service]
+      Type=simple
+      User=root
+      ExecStart=/usr/local/bin/otelcol-contrib --config /etc/otel-collector-config.yaml
+      Restart=always
+      RestartSec=10
+      StandardOutput=journal
+      StandardError=journal
+      SyslogIdentifier=otel-collector
+
+      [Install]
+      WantedBy=multi-user.target
+    owner: root:root
+    permissions: '0644'
+  %{ endif }
+
+runcmd:
+  - |
+    /bin/bash -c '
+      set -euo pipefail
+
+      # update clamav database
+      systemctl stop clamav-freshclam.service
+      freshclam
+      systemctl start clamav-freshclam.service
+      systemctl start clamav-daemon.service
+
+      systemctl daemon-reload
+
+      # install & enable otel collector
+      %{ if enable_telemetry }
+      curl -L https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.132.4/otelcol-contrib_0.132.4_linux_amd64.tar.gz -o /tmp/otelcol-contrib.tar.gz
+      tar -xzf /tmp/otelcol-contrib.tar.gz -C /usr/local/bin otelcol-contrib
+      chmod +x /usr/local/bin/otelcol-contrib
+      systemctl enable otel-collector.service --now
+      %{ endif }
+
+      # install trivy
+      curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+      # install omni binary
+      mkdir -p /etc/accuknox-omni /usr/local/bin
+      curl -L https://accuknox-omni.s3.us-east-1.amazonaws.com/main/omni-linux-amd64 -o /usr/local/bin/omni
+      chmod +x /usr/local/bin/omni
+
+      # download vuln, java and msrc db
+      chmod +x /etc/cron.daily/omni-update-db
+      /usr/local/bin/omni db download vuln java msrc
+
+      # enable omni systemd service
+      systemctl enable omni.service --now
+
+      # unattended upgrades
+      dpkg-reconfigure -f noninteractive unattended-upgrades
+    '
+
+final_message: |
+  Cloud-init setup complete!
+  If everything went well, the AccuKnox Omni service should be running.
+  Check status with: systemctl status omni
+  View logs with: journalctl -u omni -f

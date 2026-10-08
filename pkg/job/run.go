@@ -151,6 +151,7 @@ func (r Run) ScanMountPoint(ctx context.Context, os, mount, vmURI, platform stri
 		}
 	}
 
+	// macOS vuln scan
 	if os == "macos" && r.VulnScan && r.MacOSVulnScan {
 		r.Logger.LogAttrs(
 			ctx,
@@ -289,8 +290,13 @@ func (r Run) ScanMountPoint(ctx context.Context, os, mount, vmURI, platform stri
 			os,
 		)
 
-		for _, aiResult := range aiResults {
-			if err := trackedPub(ctx, aiResult); err != nil {
+		if len(aiResults) > 0 {
+			aiScanResult := aiagent.ScanResult{
+				Platform: os,
+				Agents:   aiResults,
+			}
+
+			if err := trackedPub(ctx, aiScanResult); err != nil {
 				return &result, nil
 			}
 		}

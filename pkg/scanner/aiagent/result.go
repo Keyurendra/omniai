@@ -19,3 +19,12 @@ type AgentResult struct {
 func (r AgentResult) DataType() string {
 	return "AIAGENT"
 }
+
+type ScanResult struct {
+	Platform string        `json:"platform"`
+	Agents   []AgentResult `json:"agents"`
+}
+
+func (r ScanResult) DataType() string {
+	return "AIAGENT"
+}

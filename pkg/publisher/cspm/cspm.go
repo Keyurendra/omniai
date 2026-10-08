@@ -141,7 +141,12 @@ func (p Publisher) buildArtifactURL(dataType string) (*url.URL, error) {
 }
 
 func (p Publisher) uploadFinding(ctx context.Context, f scanner.Findings) error {
-	url, err := p.buildArtifactURL(f.DataType())
+	dataType := f.DataType()
+	if dataType == "AIAGENT" {
+		dataType = "TR"
+	}
+
+	url, err := p.buildArtifactURL(dataType)
 	if err != nil {
 		return fmt.Errorf("building artifact URL: %w", err)
 	}
